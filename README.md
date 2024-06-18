@@ -67,8 +67,8 @@ python acomp.py decode --embedding_file "example.txt" --output_file "reconstruct
 
 ### Permitted Bandwidths
 
-- **Monophonic Audio**: 1.5, 3, 6, 12, 24 kHz
-- **Stereophonic Audio**: 3, 6, 12, 24 kHz
+- **Monophonic Audio**: 1.5, 3, 6, 12, 24 kbps
+- **Stereophonic Audio**: 3, 6, 12, 24 kbps
 
 ### Resampling
 
