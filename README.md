@@ -85,5 +85,14 @@ The structured format ensures that the embeddings can be efficiently processed f
 
 ## Acknowledgements
 
-This implementation uses the Encodec neural audio codec and models developed and open-sourced by Facebook Research. The availability of these models facilitates experimentation with cutting-edge audio compression technologies in a research and development setting.
+This implementation uses the Encodec neural audio codec and models developed and open-sourced by Facebook Research. The availability of these models facilitates experimentation with cutting-edge audio compression technologies in a research and development setting. Consider citing the the original work on Encodec as
+
+```
+@article{defossez2022highfi,
+  title={High Fidelity Neural Audio Compression},
+  author={Défossez, Alexandre and Copet, Jade and Synnaeve, Gabriel and Adi, Yossi},
+  journal={arXiv preprint arXiv:2210.13438},
+  year={2022}
+}
+```
 
