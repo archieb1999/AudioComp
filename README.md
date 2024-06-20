@@ -83,9 +83,42 @@ The embedding file stores the encoded audio in a structured text format:
 
 The structured format ensures that the embeddings can be efficiently processed for decoding, maintaining fidelity to the original audio characteristics.
 
+---
+
+## Notebook Documentation
+
+In addition to the main script `acomp.py`, this repository also includes a Jupyter notebook named `function_notebook.ipynb`. This notebook provides the functions used in `acomp.py` along with some additional functions, including:
+
+- **load_audio**: Loads audio files.
+- **get_model_and_sr**: Selects the appropriate model based on audio characteristics.
+- **resample_audio**: Adjusts the sample rate of audio files to match the model's requirements.
+- **process_audio**: Encodes audio into embeddings and optionally decodes it back.
+- **read_embeddings_from_txt**: Reads and prepares embeddings from a text file for decoding.
+- **decode_audio_from_embeddings**: Decodes embeddings back into audio.
+
+#### `get_codebooks` Function
+
+The `get_codebooks` function in the notebook loads the appropriate Encodec model based on the audio type (either 'mono'/'encodec_24khz' or 'stereo'/'encodec_48khz') and concatenates the codebooks from all quantizer levels into a 3D tensor. The resulting tensor has the shape `[codebook_level, num_vectors_per_codebook, vector_dimension]`, providing a detailed view of the model's quantization process.
+
+### Example Notebook Usage:
+
+```python
+# For mono (24kHz) model
+all_codebooks_mono = get_codebooks('mono')
+print("Concatenated Codebooks shape for mono (encodec_24khz) model:", all_codebooks_mono.shape)
+# Output: Concatenated Codebooks shape for mono (encodec_24khz) model: torch.Size([32, 1024, 128])
+
+# For stereo (48kHz) model
+all_codebooks_stereo = get_codebooks('stereo')
+print("Concatenated Codebooks shape for stereo (encodec_48khz) model:", all_codebooks_stereo.shape)
+# Output: Concatenated Codebooks shape for stereo (encodec_48khz) model: torch.Size([16, 1024, 128])
+```
+
+---
+
 ## Acknowledgements
 
-This implementation uses the Encodec neural audio codec and models developed and open-sourced by Facebook Research. The availability of these models facilitates experimentation with cutting-edge audio compression technologies in a research and development setting. Consider citing the the original work on Encodec as
+This implementation uses the Encodec neural audio codec and models developed and open-sourced by Facebook Research. The availability of these models facilitates experimentation with cutting-edge audio compression technologies in a research and development setting. Consider citing the the original work on Encodec as:
 
 ```
 @article{defossez2022highfi,
