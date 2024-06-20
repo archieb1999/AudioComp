@@ -96,11 +96,11 @@ In addition to the main script `acomp.py`, this repository also includes a Jupyt
 - **read_embeddings_from_txt**: Reads and prepares embeddings from a text file for decoding.
 - **decode_audio_from_embeddings**: Decodes embeddings back into audio.
 
-#### `get_codebooks` Function
+#### `get_codebooks` function
 
 The `get_codebooks` function in the notebook loads the appropriate Encodec model based on the audio type (either 'mono'/'encodec_24khz' or 'stereo'/'encodec_48khz') and concatenates the codebooks from all quantizer levels into a 3D tensor. The resulting tensor has the shape `[codebook_level, num_vectors_per_codebook, vector_dimension]`, providing a detailed view of the model's quantization process.
 
-### Example Notebook Usage:
+**Example Code Usage**:
 
 ```python
 # For mono (24kHz) model
