@@ -35,6 +35,16 @@ def resample_audio(audio, original_sr, target_sr):
     return audio
 
 def process_audio(input_file, bandwidth, embedding_file, output_file=None):
+    """
+    Process an audio file to encode it to embeddings and optionally decode it back.
+
+    Args:
+        input_file (str): Path to the input audio file.
+        bandwidth (float): Bandwidth to be used for the model.
+        embedding_file (str): Path where embeddings should be saved.
+        output_file (str, optional): Path to save the decoded audio. If None, no audio is saved.
+
+    """
     # Load the input audio file
     audio, sr = load_audio(input_file)
     
@@ -121,6 +131,16 @@ def read_embeddings_from_txt(file_path: str, num_codebooks: int) -> List[Encoded
     return encoded_frames
 
 def decode_audio_from_embeddings(embedding_file, output_file):
+     """
+    Process an audio file to encode it to embeddings and optionally decode it back.
+
+    Args:
+        input_file (str): Path to the input audio file.
+        bandwidth (float): Bandwidth to be used for the model.
+        embedding_file (str): Path where embeddings should be saved.
+        output_file (str, optional): Path to save the decoded audio. If None, no audio is saved.
+
+    """
     # Read the number of channels and bandwidth from the text file
     with open(embedding_file, 'r') as f:
         lines = f.readlines()
@@ -134,7 +154,7 @@ def decode_audio_from_embeddings(embedding_file, output_file):
     model.set_target_bandwidth(bandwidth)
     
     # Determine the number of codebooks from the model
-    num_codebooks = int(bandwidth*4/3)  # model.quantizer.n_q
+    num_codebooks = int(bandwidth*4/(3*channels)) #1.5 kbps- 2 codebooks, 3 kbps- 4 codebooks,... For stereo it's half of mono 
     
     # Read embeddings from the txt file
     encoded_frames = read_embeddings_from_txt(embedding_file, num_codebooks)
