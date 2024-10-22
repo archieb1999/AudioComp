@@ -9,7 +9,7 @@ Encodec is a state-of-the-art audio processing tool designed for efficient and h
 
 ## Requirements
 
-The script requires Python 3.8 and a recent version of PyTorch (ideally 1.11.0 or newer). Dependencies include:
+The script requires Python 3.8+ and a recent version of PyTorch (ideally 1.11.0 or newer). Dependencies include:
 
 - `torch`
 - `torchaudio`
